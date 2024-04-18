@@ -9,6 +9,7 @@ readme = "README.md"
 python = "==3.11.5"
 dbt-postgres = "^1.7.12"
 apache-airflow = "^2.9.0"
+apache-airflow-providers-dbt-cloud = "^3.7.1"
 
 
 [build-system]

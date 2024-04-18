@@ -1,19 +1,27 @@
-from datetime import datetime
-from airflow.decorators import task, dag
+from airflow.decorators import dag, task
+from airflow.providers.dbt.cloud.hooks.dbt import DbtCloudHook, DbtCloudJobRunStatus
+from airflow.providers.dbt.cloud.operators.dbt import DbtCloudRunJobOperator
+from pendulum import datetime
 
-@dag(start_date=datetime(2024, 4, 1), catchup=False)
-def dbt_pipeline():
-    
-    @task.bash
-    def running() -> str:
-        return 'cd include/bootcamp && dbt run'
-    
-    @task.bash
-    def desculpe_marc() -> str:
-        return 'echo "Nos desculpe Marc"'
-    
-    t1 = running()
-    t2 = desculpe_marc()
-    t1 >> t2
+DBT_CLOUD_CONN_ID = "dbt-conn"
+JOB_ID = "70403103919624"
 
-dbt_pipeline()
+@dag(
+    start_date=datetime(2024, 4, 18),
+    schedule="@daily",
+    catchup=False,
+)
+def running_dbt_cloud():
+
+    trigger_job = DbtCloudRunJobOperator(
+        task_id="trigger_dbt_cloud_job",
+        dbt_cloud_conn_id=DBT_CLOUD_CONN_ID,
+        job_id=JOB_ID,
+        check_interval=60,
+        timeout=360,
+    )
+
+    trigger_job
+
+
+running_dbt_cloud()

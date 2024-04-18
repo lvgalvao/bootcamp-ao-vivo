@@ -29,3 +29,7 @@ dbt init
 ```
 
 # bootcamp-ao-vivo
+
+https://docs.astronomer.io/learn/airflow-dbt-cloud
+
+https://www.cittabase.com/orchestrate-airbyte-cloud-with-airflow-seamlessly-using-airbyte-api/
