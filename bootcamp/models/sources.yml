@@ -1,0 +1,7 @@
+sources:
+  - name: bronze
+    database: dbname_7u7h
+    schema: bronze
+    tables:
+      - name: google_sheets_pesquisa
+        description: "Dados importados do Google Sheets."
