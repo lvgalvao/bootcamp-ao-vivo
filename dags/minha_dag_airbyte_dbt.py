@@ -22,7 +22,7 @@ def running_airbyte():
                  "Accept":"application/json",
                  "Authorization": API_KEY},
         data=json.dumps({"connectionId": AIRBYTE_CONNETCION_ID, "jobType":"sync"}),  # Assegure que o connectionId está correto
-        response_check=lambda response: response.json()['status'] == 'succeeded'
+        response_check=lambda response: response.json()['status'] == 'running'
     )
 
     start_airbyte_sync
