@@ -4,9 +4,8 @@ from airflow.decorators import dag, task
 
 from datetime import datetime
 
-
 @dag(
-        dag_id="minha_terceira_dag",
+        dag_id="minha_dag",
         description="minha etl braba",
         schedule="* * * * *",
         start_date=datetime(2023,3,24),
