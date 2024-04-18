@@ -1,19 +1,19 @@
 from datetime import datetime
 from airflow.decorators import task, dag
 
-@dag(start_date=datetime(2023, 1, 1))
+@dag(start_date=datetime(2024, 4, 1), catchup=False)
 def dbt_pipeline():
     
     @task.bash
-    def running():
-        return "cd include/bootcamp && dbt run"
+    def running() -> str:
+        return 'cd include/bootcamp && dbt run'
     
     @task.bash
-    def desculpe_marc():
-        return "echo 'Nos desculpe Marc'"
+    def desculpe_marc() -> str:
+        return 'echo "Nos desculpe Marc"'
     
     t1 = running()
-    t2 = running()
-    t1 > t2
-    
+    t2 = desculpe_marc()
+    t1 >> t2
+
 dbt_pipeline()
