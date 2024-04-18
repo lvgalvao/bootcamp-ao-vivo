@@ -6,7 +6,9 @@ authors = ["lvgalvaofilho"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "==3.11.5"
+dbt-postgres = "^1.7.12"
+apache-airflow = "^2.9.0"
 
 
 [build-system]
